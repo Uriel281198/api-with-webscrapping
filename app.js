@@ -10,7 +10,8 @@ app.use(morgan('dev'));
 app.get('/',(req,res)=> {
     res.json({
         welcome:'Apis For Development',
-        Author:"Soyer98"
+        Author:"Soyer98",
+        Version:"V_1.1"
     })
 })
 
