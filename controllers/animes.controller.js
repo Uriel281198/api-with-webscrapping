@@ -197,12 +197,17 @@ const getDataFriday = async (req, res) => {
             ],
         });
         let page = await browser.newPage();
+        // await page.setDefaultNavigationTimeout(0);
         await page.setViewport({
             width: 1920,
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, {timeout:0});
+        await page.goto(urlBase, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Friday .timetable-column-show .show-link')]
