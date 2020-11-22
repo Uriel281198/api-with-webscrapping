@@ -213,10 +213,14 @@ const getDataFriday = async (req, res) => {
             [...document.querySelectorAll('.Friday .timetable-column-show .show-link')]
                 .map((x) => x.href))
                 
-        let wednesday = [];
+        let friday = [];
         for (let enlace of resultado) {
-            await page.goto(enlace, {timeout:0});
-            await page.waitForTimeout(1000)
+            await page.goto(enlace, {
+                waitUntil: 'load',
+                // Remove the timeout
+                timeout: 0
+            });
+            // await page.waitForTimeout(1000)
 
             const anime = await page.evaluate(() => {
                 let temp = {}
@@ -226,9 +230,9 @@ const getDataFriday = async (req, res) => {
                 return temp;
             })
 
-            wednesday.push(anime);
+            friday.push(anime);
         }
-        res.json({ wednesday })
+        res.json({ friday })
         await browser.close();
     }
     catch (e) {
