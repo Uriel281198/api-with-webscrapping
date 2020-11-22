@@ -22,7 +22,11 @@ const getDataMonday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { waitUntil: 'networkidle2' });
+        await page.goto(urlBase, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Monday .timetable-column-show .show-link')]
@@ -30,8 +34,11 @@ const getDataMonday = async (req, res) => {
 
         let monday = [];
         for (let enlace of resultado) {
-            await page.goto(enlace, { waitUntil: 'networkidle2' });
-            await page.waitForTimeout(1000)
+            await page.goto(enlace, {
+                waitUntil: 'load',
+                // Remove the timeout
+                timeout: 0
+            });            
 
             const anime = await page.evaluate(() => {
                 let temp = {}
@@ -67,7 +74,11 @@ const getDataTuesday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { timeout: 0 });
+        await page.goto(urlBase, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Tuesday .timetable-column-show .show-link')]
@@ -75,8 +86,12 @@ const getDataTuesday = async (req, res) => {
                 
         let tuesday = [];
         for (let enlace of resultado) {
-            await page.goto(enlace, { waitUntil: 'networkidle2' });
-            await page.waitForTimeout(1000)
+            await page.goto(enlace, {
+                waitUntil: 'load',
+                // Remove the timeout
+                timeout: 0
+            });
+            
 
             const anime = await page.evaluate(() => {
                 let temp = {}
@@ -113,7 +128,11 @@ const getDataWednesday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { timeout: 0 });
+        await page.goto(urlBase, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Wednesday .timetable-column-show .show-link')]
@@ -122,7 +141,7 @@ const getDataWednesday = async (req, res) => {
         let wednesday = [];
         for (let enlace of resultado) {
             await page.goto(enlace, { waitUntil: 'networkidle2' });
-            await page.waitForTimeout(1000)
+            
 
             const anime = await page.evaluate(() => {
                 let temp = {}
@@ -157,16 +176,24 @@ const getDataThursday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { timeout: 0 });
+        await page.goto(urlBase, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Thursday .timetable-column-show .show-link')]
                 .map((x) => x.href))
                 
-        let wednesday = [];
+        let thursday = [];
         for (let enlace of resultado) {
-            await page.goto(enlace, { waitUntil: 'networkidle2' });
-            await page.waitForTimeout(1000)
+            await page.goto(enlace, {
+                waitUntil: 'load',
+                // Remove the timeout
+                timeout: 0
+            });
+            // await page.waitForTimeout(1000)
 
             const anime = await page.evaluate(() => {
                 let temp = {}
@@ -176,9 +203,9 @@ const getDataThursday = async (req, res) => {
                 return temp;
             })
 
-            wednesday.push(anime);
+            thursday.push(anime);
         }
-        res.json({ wednesday })
+        res.json({ thursday })
         await browser.close();
     }
     catch (e) {
@@ -255,16 +282,24 @@ const getDataSaturday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { waitUntil: 'networkidle2' });
+        await page.goto(urlBase, {
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Saturday .timetable-column-show .show-link')]
                 .map((x) => x.href))
                 
-        let wednesday = [];
+        let saturday = [];
         for (let enlace of resultado) {
-            await page.goto(enlace, { waitUntil: 'networkidle2' });
-            await page.waitForTimeout(1000)
+            await page.goto(enlace, {
+                waitUntil: 'load',
+                // Remove the timeout
+                timeout: 0
+            });
+            
 
             const anime = await page.evaluate(() => {
                 let temp = {}
@@ -274,9 +309,9 @@ const getDataSaturday = async (req, res) => {
                 return temp;
             })
 
-            wednesday.push(anime);
+            saturday.push(anime);
         }
-        res.json({ wednesday })
+        res.json({ saturday })
         await browser.close();
     }
     catch (e) {
@@ -299,16 +334,24 @@ const getDataSunday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase,{ waitUntil: 'networkidle2' });
+        await page.goto(urlBase,{
+            waitUntil: 'load',
+            // Remove the timeout
+            timeout: 0
+        });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Sunday .timetable-column-show .show-link')]
                 .map((x) => x.href))
                 
-        let wednesday = [];
+        let sunday = [];
         for (let enlace of resultado) {
-            await page.goto(enlace, { waitUntil: 'networkidle2' });
-            await page.waitForTimeout(1000)
+            await page.goto(enlace, {
+                waitUntil: 'load',
+                // Remove the timeout
+                timeout: 0
+            });
+            
 
             const anime = await page.evaluate(() => {
                 let temp = {}
@@ -318,9 +361,9 @@ const getDataSunday = async (req, res) => {
                 return temp;
             })
 
-            wednesday.push(anime);
+            sunday.push(anime);
         }
-        res.json({ wednesday })
+        res.json({ sunday })
         await browser.close();
     }
     catch (e) {
