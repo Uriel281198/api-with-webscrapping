@@ -202,7 +202,7 @@ const getDataFriday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { waitUntil: 'networkidle2' });
+        await page.goto(urlBase, {timeout:0});
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Friday .timetable-column-show .show-link')]
@@ -210,7 +210,7 @@ const getDataFriday = async (req, res) => {
                 
         let wednesday = [];
         for (let enlace of resultado) {
-            await page.goto(enlace, { waitUntil: 'networkidle2' });
+            await page.goto(enlace, {timeout:0});
             await page.waitForTimeout(1000)
 
             const anime = await page.evaluate(() => {
