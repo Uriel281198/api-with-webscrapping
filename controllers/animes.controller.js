@@ -22,7 +22,7 @@ const getDataMonday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { timeout: 0 });
+        await page.goto(urlBase, { waitUntil: 'networkidle2' });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Monday .timetable-column-show .show-link')]
