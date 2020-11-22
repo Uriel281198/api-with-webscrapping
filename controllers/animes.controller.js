@@ -202,7 +202,7 @@ const getDataFriday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { timeout: 0 });
+        await page.goto(urlBase, { waitUntil: 'networkidle2' });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Friday .timetable-column-show .show-link')]
@@ -246,7 +246,7 @@ const getDataSaturday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { timeout: 0 });
+        await page.goto(urlBase, { waitUntil: 'networkidle2' });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Saturday .timetable-column-show .show-link')]
@@ -290,7 +290,7 @@ const getDataSunday = async (req, res) => {
             height: 1480,
             deviceScaleFactor: 1,
         })
-        await page.goto(urlBase, { timeout: 0 });
+        await page.goto(urlBase,{ waitUntil: 'networkidle2' });
 
         const resultado = await page.evaluate(async () =>
             [...document.querySelectorAll('.Sunday .timetable-column-show .show-link')]

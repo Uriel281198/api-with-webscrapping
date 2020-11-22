@@ -9,15 +9,15 @@ const {
     getDataSunday, } = require('../controllers/animes.controller');
 const router = Router();
 
-router.get('/Monday', getDataMonday)
+router.get('/monday', getDataMonday)
 
-router.get('/Tuesday', getDataTuesday)
+router.get('/tuesday', getDataTuesday)
 
-router.get('/Wendnesday', getDataWednesday)
-router.get('/Thursday',getDataThursday)
-router.get('/Friday',getDataFriday)
-router.get('/Saturday', getDataSaturday)
-router.get('/Sunday', getDataSunday)
+router.get('/wendnesday', getDataWednesday)
+router.get('/thursday',getDataThursday)
+router.get('/friday',getDataFriday)
+router.get('/saturday', getDataSaturday)
+router.get('/sunday', getDataSunday)
 
 module.exports = {
     router
